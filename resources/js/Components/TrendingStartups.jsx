@@ -39,11 +39,11 @@ const startups = [
 
 const TrendingStartups = () => {
   return (
-    <section className="py-16 px-4 bg-gray-50">
+    <section className="py-20 px-4 space-y-20">
       {/* Title */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
-        Trending startups hiring now
+        Job listings archive
       </h2>
 
       {/* Grid */}

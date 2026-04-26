@@ -1,4 +1,6 @@
+import { Link, router } from "@inertiajs/react";
 import React from "react";
+import NavLink from "./NavLink";
 
 const Navbar = () => {
   return (
@@ -7,16 +9,16 @@ const Navbar = () => {
         
         {/* LOGO */}
         <div className="text-xl font-bold">
-          JobSphere<span className="text-red-500">:</span>
+          <Link href='/'className="hover:text-black">JobSphere<span className="text-red-500">:</span></Link>
         </div>
 
         {/* LINKS (desktop) */}
         <div className="hidden md:flex items-center gap-8 text-gray-700">
-          <a href="#" className="hover:text-black">Overview</a>
-          <a href="#" className="hover:text-black">Jobs</a>
-          <a href="#" className="hover:text-black">Featured</a>
-          <a href="#" className="hover:text-black">Remote</a>
-          <a href="#" className="hover:text-black">For companies</a>
+          <Link href='/'className="hover:text-black">Overview</Link>
+          <NavLink href={route('job-listings.index')} className="hover:text-black">Jobs</NavLink>
+          <NavLink href={route('job-listings.index')} className="hover:text-black">Featured jobs</NavLink>
+          <NavLink href={route('job-listings.index')}className="hover:text-black">Remote jobs</NavLink>
+          <NavLink href={route('job-listings.index')}className="hover:text-black">Post a job</NavLink>
         </div>
 
         {/* ACTIONS */}
