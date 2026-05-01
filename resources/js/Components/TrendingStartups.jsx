@@ -3,9 +3,8 @@ import React from "react";
 
 
 const TrendingStartups = ({jobListings, SectionTitle}) => {
-  console.log(jobListings)
   return (
-    <section className="py-20 px-4 space-y-20">
+    <section className="pb-20 px-4 space-y-20">
       {/* Title */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20">
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-10">
@@ -46,7 +45,7 @@ const TrendingStartups = ({jobListings, SectionTitle}) => {
                 
                   <span
                    
-                    className="text-xs bg-pink-100 text-pink-600 px-2 py-1 rounded-md"
+                    className="text-xs capitalize bg-pink-100 text-pink-600 px-2 py-1 rounded-md"
                   >
                     {jobListing.job_type}
                   </span>

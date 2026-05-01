@@ -1,5 +1,5 @@
 import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link, router, useForm, usePage } from '@inertiajs/react';
 import HeroSection from '@/Components/HeroSection';
 import AppLayout from '@/Layouts/AppLayout';
 import TrendingStartups from '@/Components/TrendingStartups';
@@ -22,8 +22,19 @@ export default function Index({ auth, laravelVersion, phpVersion,  }) {
 
     const jobListings = props.jobsListings;
     const jobsListings_contract = props.jobsListings_contract;
+    const jobsListings_full = props.jobsListings_full;
+    const jobsListings_part = props.jobsListings_part;
     const searched = props.search;
 
+    const { data, setData,get, post, processing, errors } = useForm({
+      search: "",
+    });
+
+
+    function handleSubmit(e) {
+    e.preventDefault();
+    router.get("/job-listings?search=contract");
+    }
 
    return (
     <AppLayout>
@@ -51,13 +62,33 @@ export default function Index({ auth, laravelVersion, phpVersion,  }) {
             <h2 className="text-3xl font-bold text-gray-900">
               Trending contract jobs
             </h2>
-            <a href="#" className="text-sm underline">
+            <button type='submit' onClick={e=>handleSubmit(e)} className="text-sm underline">
               View all jobs
-            </a>
+            </button>
           </div>
 
           {/* Jobs */}
           <TrendingJobs jobListings={jobsListings_contract.data} />
+
+           <div className="flex justify-between items-center mb-6 mt-10">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Trending full-time jobs
+            </h2>
+            <button type='submit' onClick={e=>handleSubmit(e)} className="text-sm underline">
+              View all jobs
+            </button>
+          </div>
+          <TrendingJobs jobListings={jobsListings_full.data} />
+
+           <div className="flex justify-between items-center mb-6 mt-10">
+            <h2 className="text-3xl font-bold text-gray-900">
+              Trending part-time jobs
+            </h2>
+            <button type='submit' onClick={e=>handleSubmit(e)} className="text-sm underline">
+              View all jobs
+            </button>
+          </div>
+          <TrendingJobs jobListings={jobsListings_part.data} />
           </div>
         </div>
            {/* SIDEBAR */}

@@ -44,7 +44,14 @@ class HandleInertiaRequests extends Middleware
             },
             'jobsListings_contract' => function () {
                 return JobListingResource::collection(JobListing::where('job_type', 'contract')->latest()->take(4)->get());
+            },
+            'jobsListings_full' => function () {
+                return JobListingResource::collection(JobListing::where('job_type', 'full-time')->latest()->take(4)->get());
+            },
+            'jobsListings_part' => function () {
+                return JobListingResource::collection(JobListing::where('job_type', 'part-time')->latest()->take(4)->get());
             }
+            
         ];
     }
 }

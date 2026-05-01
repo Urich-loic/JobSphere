@@ -93,9 +93,8 @@ class JobListing extends Model
             $search = $request->filled('search');
             $q->where(function($subQ)use ($search){
                 $subQ->where('company_name', 'like', "%{$search}%")
-                ->orWhere('city', 'like', "%{$search}%")
-                ->orWhere('skills', 'like', "%{$search}%")
-                ->orWhere('title', 'like', "%{$search}%");
+                ->orWhere('title', 'like', "%{$search}%")
+                ->orWhere('job_type', 'like', "%{$search}%");
             });    
         });
            

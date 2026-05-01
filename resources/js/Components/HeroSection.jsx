@@ -1,5 +1,5 @@
 import { router, useForm } from "@inertiajs/react";
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 
 const HeroSearch = () => {
@@ -9,7 +9,71 @@ const { data, setData,get, post, processing, errors } = useForm({
   search: "",
   location: "",
 });
+const [search,setSearch] = useState(data.search||"");
+const [location,setLocation] = useState();
+const [inputValue,setInputValue] = useState('');
+const [pageNumber,setPageNumber] = useState();
+ function updatedPageNumber(paginate){
+        setPageNumber(paginate.url.split('=')[1]);
+    }
+const initialRender = useRef(true);
 
+const searchUrl = useMemo(()=>{
+  const url = new URL(route('job-listings.index'));
+
+  if(search){
+    url.searchParams.append('search',search)
+  }
+
+  if(pageNumber) {
+            url.searchParams.append('page', pageNumber)
+        }
+
+  if(data.location){
+    url.searchParams.append('location',data.location)
+  }
+
+  return url.href;
+},[location, search]);
+
+console.log(searchUrl);
+
+useEffect(()=>{
+  if(initialRender.current) {
+            initialRender.current = false;
+            return;
+        }
+
+  router.visit(searchUrl,{
+            preserveScroll:true,
+            preserveState:true,
+        })
+},[searchUrl])
+
+
+
+useEffect(()=>{
+        if(inputValue.length > 3) {
+            const handler = setTimeout(()=>{
+            setSearch(inputValue);
+        },2000)
+
+        return () => {
+            clearTimeout(handler);
+        }
+        }
+    },[inputValue])
+
+
+  useEffect(()=>{
+        const handler = setTimeout(()=>{
+            setPageNumber("1");
+        },2000)
+
+        return () => {
+            clearTimeout(handler);
+        }
+    },[inputValue])
 
 function handleSubmit(e) {
   e.preventDefault();
@@ -38,8 +102,8 @@ function handleSubmit(e) {
           <input
           name="search"
             type="text"
-            onChange={(e)=>{setData("search",e.target.value)}}
-            value={data.search}
+            onChange={(e)=>{setInputValue(e.target.value)}}
+            value={inputValue}
             placeholder="Job title"
             className="w-full outline-none text-gray-700 border-none focus:ring-0"
           />

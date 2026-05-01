@@ -23,12 +23,12 @@ const Navbar = () => {
 
         {/* ACTIONS */}
         <div className="hidden md:flex items-center gap-4">
-          <button className="px-4 py-2 border border-gray-400 rounded-md hover:bg-gray-200 transition">
+          <Link href={route('login')} className="px-4 py-2 border border-gray-400 rounded-md hover:bg-gray-200 transition">
             Log In
-          </button>
-          <button className="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-gray-800 transition">
+          </Link>
+          <Link href={route('register')} className="px-4 py-2 bg-pink-600 text-white rounded-md hover:bg-gray-800 transition">
             Sign Up
-          </button>
+          </Link>
         </div>
 
         {/* MOBILE MENU BUTTON */}

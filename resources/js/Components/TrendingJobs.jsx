@@ -53,7 +53,7 @@ const JobItem = ({ job }) => (
         </div>
 
 
-      <div>
+      <div className="space-y-1">
         <h3 className="font-semibold text-gray-900"><Link href={route('job-listings.show', job)} >{job.title}</Link></h3>
         <p className="text-sm text-gray-500">
           {job.company_name} • {job.country} • Min: {job.salary_min} • {job.expires_at}
@@ -63,7 +63,7 @@ const JobItem = ({ job }) => (
                 
                   <span
                    
-                    className="text-xs bg-pink-100 text-pink-600 px-2 py-1 rounded-md"
+                    className="text-xs bg-pink-100 capitalize text-pink-600 px-2 py-1 rounded-md"
                   >
                     {job.job_type}
                   </span>
