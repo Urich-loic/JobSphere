@@ -1,4 +1,5 @@
 import React from "react";
+import NavLink from "./NavLink";
 
 const Footer = () => {
   return (
@@ -21,7 +22,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 flex-1">
           
           {/* Column 1 */}
-          <div>
+          {/* <div>
             <h4 className="font-semibold mb-3">For Candidates</h4>
             <ul className="space-y-1 text-gray-600">
               <li className="hover:underline cursor-pointer">Overview</li>
@@ -32,10 +33,10 @@ const Footer = () => {
               <li className="hover:underline cursor-pointer">Tech Startups</li>
               <li className="hover:underline cursor-pointer">Remote</li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Column 2 */}
-          <div>
+          {/* <div>
             <h4 className="font-semibold mb-3">For Recruiters</h4>
             <ul className="space-y-1 text-gray-600">
               <li className="hover:underline cursor-pointer">Overview</li>
@@ -45,10 +46,10 @@ const Footer = () => {
               <li className="hover:underline cursor-pointer">Hire Developers</li>
               <li className="hover:underline cursor-pointer">Pricing</li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Column 3 */}
-          <div>
+          {/* <div>
             <h4 className="font-semibold mb-3">Company</h4>
             <ul className="space-y-1 text-gray-600">
               <li className="hover:underline cursor-pointer">About</li>
@@ -59,7 +60,7 @@ const Footer = () => {
               <li className="hover:underline cursor-pointer">Trust</li>
               <li className="hover:underline cursor-pointer">Platform Status</li>
             </ul>
-          </div>
+          </div> */}
 
         </div>
       </div>
@@ -73,7 +74,7 @@ const Footer = () => {
 
         <p>
           Browse by:{" "}
-          <span className="underline cursor-pointer">Jobs</span>,{" "}
+          <span className="underline cursor-pointer"><NavLink href={route('job-listings.index')}>Jobs</NavLink></span>,{" "}
           <span className="underline cursor-pointer">Remote Jobs</span>,{" "}
           <span className="underline cursor-pointer">Locations</span>,{" "}
           <span className="underline cursor-pointer">Startups</span>,{" "}

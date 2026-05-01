@@ -8,6 +8,7 @@ import React, { useState } from 'react'
 
 export default function AppLayout({children}) {
         const user = usePage().props.auth.user;
+
     
         const [showingNavigationDropdown, setShowingNavigationDropdown] =
             useState(false);

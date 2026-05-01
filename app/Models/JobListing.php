@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class JobListing extends Model
@@ -20,6 +21,7 @@ class JobListing extends Model
         'company_size',
         'description',
         'status',
+        'skills',
         'city',
         'country',
         'salary_min',
@@ -33,6 +35,7 @@ class JobListing extends Model
 
 
     protected $casts = [
+        'skills'=>'array',
         'expires_at' => 'datetime',
         'salary_min' => 'integer',
         'salary_max' => 'integer',
@@ -83,15 +86,19 @@ class JobListing extends Model
         return $country ? $query->where('country', $country) : $query;
     }
 
-    public function scopeSearch(Builder $query, ?string $term): Builder
+    public function scopeSearch(Builder $query, Request $request): Builder
     {
-        return $term
-            ? $query->where(function ($q) use ($term) {
-                $q->where('title', 'like', "%{$term}%")
-                  ->orWhere('company_name', 'like', "%{$term}%")
-                  ->orWhere('city', 'like', "%{$term}%");
-            })
-            : $query;
+        
+        return $query->when($request->filled('search'),function($q) use ($request){
+            $search = $request->filled('search');
+            $q->where(function($subQ)use ($search){
+                $subQ->where('company_name', 'like', "%{$search}%")
+                ->orWhere('city', 'like', "%{$search}%")
+                ->orWhere('skills', 'like', "%{$search}%")
+                ->orWhere('title', 'like', "%{$search}%");
+            });    
+        });
+           
     }
 
 

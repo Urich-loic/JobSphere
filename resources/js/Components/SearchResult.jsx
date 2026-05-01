@@ -2,8 +2,8 @@ import { Link,  } from "@inertiajs/react";
 import React from "react";
 
 
-const TrendingStartups = ({jobListings, SectionTitle}) => {
-  console.log(jobListings)
+const SearchResult = ({SectionTitle, search}) => {
+  console.log(search)
   return (
     <section className="py-20 px-4 space-y-20">
       {/* Title */}
@@ -14,7 +14,7 @@ const TrendingStartups = ({jobListings, SectionTitle}) => {
 
       {/* Grid */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-        {jobListings?.data?.map((jobListing, index) => (
+        { search?.data.map((jobListing, index) => (
           <div
             key={index}
             className="bg-white rounded-2xl border p-5 flex flex-col justify-between hover:shadow-md transition"
@@ -77,4 +77,4 @@ const TrendingStartups = ({jobListings, SectionTitle}) => {
   );
 };
 
-export default TrendingStartups;
+export default SearchResult;
